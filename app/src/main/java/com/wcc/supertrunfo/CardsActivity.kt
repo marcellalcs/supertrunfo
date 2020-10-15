@@ -2,18 +2,19 @@ package com.wcc.supertrunfo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_cards.*
 
 class CardsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cards)
 
-        val playerOneName = intent.getStringArrayExtra("player_one") ?: "Player One"
-        val playerTwoName = intent.getStringArrayExtra("player_two") ?: "Player Two"
+        val playerOneName = intent.getStringExtra("player_one") ?: "Player One"
+        val playerTwoName = intent.getStringExtra("player_two") ?: "Player Two"
 
         val vehiculeOne = mapOf(
-            "maxAcceleration" to "100km",
-            "acceleration0T010" to "120sec",
+            "maxAcceleration" to "100",
+            "acceleration0T010" to "120",
             "passengers" to "5",
             "doors" to "2",
             "style" to "sedã",
@@ -21,24 +22,24 @@ class CardsActivity : AppCompatActivity() {
         )
 
         val vehiculeTwo = mapOf(
-            "maxAcceleration" to "50km",
-            "acceleration0T010" to "60sec",
+            "maxAcceleration" to "50",
+            "acceleration0T010" to "60",
             "passengers" to "2",
             "gears" to "7",
             "type" to "bicke"
         )
 
         val vehiculeThree = mapOf(
-            "maxAcceleration" to "170km",
-            "acceleration0T010" to "40sec",
+            "maxAcceleration" to "170",
+            "acceleration0T010" to "40",
             "passengers" to "2",
-            "weight" to "70kg",
+            "weight" to "70",
             "type" to "motorcycle"
         )
 
         val vehiculeFour = mapOf(
-            "maxAcceleration" to "130km",
-            "acceleration0T010" to "170sec",
+            "maxAcceleration" to "130",
+            "acceleration0T010" to "170",
             "passengers" to "4",
             "doors" to "2",
             "style" to "hatch",
@@ -47,8 +48,8 @@ class CardsActivity : AppCompatActivity() {
 
 
         val vehiculeFive = mapOf(
-            "maxAcceleration" to "30km",
-            "acceleration0T010" to "240sec",
+            "maxAcceleration" to "30",
+            "acceleration0T010" to "240",
             "passengers" to "1",
             "gears" to "4",
             "type" to "bike"
@@ -62,7 +63,7 @@ class CardsActivity : AppCompatActivity() {
             "bikeChampionships" to "10",
             "motorcycleChampionships" to "0",
             "boldness" to "3",
-            "defensiveDriving" to "0.4",
+            "defensiveDriving" to "4",
         )
 
         val driverTwo = mapOf(
@@ -73,7 +74,7 @@ class CardsActivity : AppCompatActivity() {
             "bikeChampionships" to "0",
             "motorcycleChampionships" to "0",
             "boldness" to "2",
-            "defensiveDriving" to "0.7",
+            "defensiveDriving" to "7",
         )
 
         val driverThree = mapOf(
@@ -84,7 +85,7 @@ class CardsActivity : AppCompatActivity() {
             "bikeChampionships" to "7",
             "motorcycleChampionships" to "15",
             "boldness" to "6",
-            "defensiveDriving" to "0.2",
+            "defensiveDriving" to "2",
         )
 
         val vehicles = listOf(vehiculeOne, vehiculeTwo, vehiculeThree, vehiculeFour, vehiculeFive)
@@ -112,13 +113,13 @@ class CardsActivity : AppCompatActivity() {
                     ?: 1 * (currentDriverPlayerOne["boldness"]?.toInt() ?: 1))
             }
 
-        val accelerationTimePlayerOne = (currentVehiclePlayerOne["accelerationTime"]?.toInt()
+        val accelerationTimeCardOne = (currentVehiclePlayerOne["accelerationTime"]?.toInt()
             ?: 1) * (1 / (currentDriverPlayerOne["accelerationTime"]?.toInt() ?: 1))
 
-        val passengersPlayerOne = (currentVehiclePlayerOne["passengers"]?.toInt()
+        val passengersCardOne = (currentVehiclePlayerOne["passengers"]?.toInt()
             ?: 0) * (1 + (currentDriverPlayerOne["defensiveDriving"]?.toInt() ?: 0))
 
-        val xPPlayerOne = when (currentVehiclePlayerOne["type"]) {
+        val xPCardOne = when (currentVehiclePlayerOne["type"]) {
             "car" -> currentDriverPlayerOne["carXP"]?.toInt() ?: 0
             "motorcycle" -> currentDriverPlayerOne["motorcycleXP"]?.toInt() ?: 0
             else -> currentDriverPlayerOne["bikeXP"]?.toInt() ?: 0
@@ -140,18 +141,31 @@ class CardsActivity : AppCompatActivity() {
                     ?: 1 * (currentDriverPlayerTwo["boldness"]?.toInt() ?: 1))
             }
 
-        val accelerationTimePlayerTwo = (currentVehiclePlayerOne["accelerationTime"]?.toInt()
+        val accelerationTimeCardTwo = (currentVehiclePlayerOne["accelerationTime"]?.toInt()
             ?: 1) * (1 / (currentDriverPlayerOne["accelerationTime"]?.toInt() ?: 1))
 
-        val passengersPlayerTwo = (currentVehiclePlayerOne["passengers"]?.toInt()
+        val passengersCardTwo = (currentVehiclePlayerOne["passengers"]?.toInt()
             ?: 0) * (1 + (currentDriverPlayerOne["defensiveDriving"]?.toInt() ?: 0))
 
-        val xPPlayerTwo = when (currentVehiclePlayerOne["type"]) {
+        val xPCardTwo = when (currentVehiclePlayerOne["type"]) {
             "car" -> currentDriverPlayerOne["carXP"]?.toInt() ?: 0
             "motorcycle" -> currentDriverPlayerOne["motorcycleXP"]?.toInt() ?: 0
             else -> currentDriverPlayerOne["bikeXP"]?.toInt() ?: 0
         }
 
+        cardPlayerOneLabel.text = "Card $playerOneName"
+        cardPlayerTwoLabel.text = "Card $playerTwoName"
 
+        cardPlayerOneVelocity.text = "Máx velocity: $cardOneMaxVelocity"
+        cardPlayerTwoVelocity.text = "Máx velocity: $cardTwoMaxVelocity"
+
+        cardPlayerOneAccelerationTime.text = "Acceleration time: $accelerationTimeCardOne"
+        cardPlayerTwoAccelerationTime.text = "Acceleration time: $accelerationTimeCardTwo"
+
+        cardPlayerOnePassengers.text = "Passengers: $passengersCardOne"
+        cardPlayerTwoPassengers.text = "Passengers: $passengersCardTwo"
+
+        cardPlayerOneXP.text = "XP: $xPCardOne"
+        cardPlayerTwoXP.text = "XP: $xPCardTwo"
     }
 }

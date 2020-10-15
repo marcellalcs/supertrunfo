@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
 
         startGameButton.setOnClickListener {
             val intent = Intent(this, CardsActivity::class.java)
-            intent.putExtra("player_one", inputPlayerOne.text)
-            intent.putExtra("player_two", inputPlayerTwo.text)
+            intent.putExtra("player_one", inputPlayerOne.text.toString())
+            intent.putExtra("player_two", inputPlayerTwo.text.toString())
             startActivity(intent)
         }
     }
