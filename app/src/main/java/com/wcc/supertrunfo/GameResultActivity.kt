@@ -4,14 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_cards.*
+import kotlinx.android.synthetic.main.activity_game_result.*
 
-class CardsActivity : AppCompatActivity() {
+class GameResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cards)
+        setContentView(R.layout.activity_game_result)
 
         val playerOneName = intent.getStringExtra("player_one") ?: "Player One"
         val playerTwoName = intent.getStringExtra("player_two") ?: "Player Two"
+        val chosenCriteria = intent.getStringExtra("criteria") ?: "velocity"
 
         val vehiculeOne = mapOf(
             "maxAcceleration" to "100",
@@ -154,26 +156,34 @@ class CardsActivity : AppCompatActivity() {
             else -> currentDriverPlayerOne["bikeXP"]?.toInt() ?: 0
         }
 
-        cardPlayerOneLabel.text = "Card $playerOneName"
-        cardPlayerTwoLabel.text = "Card $playerTwoName"
 
-        cardPlayerOneVelocity.text = "Máx velocity: $cardOneMaxVelocity"
-        cardPlayerTwoVelocity.text = "Máx velocity: $cardTwoMaxVelocity"
-
-        cardPlayerOneAccelerationTime.text = "Acceleration time: $accelerationTimeCardOne"
-        cardPlayerTwoAccelerationTime.text = "Acceleration time: $accelerationTimeCardTwo"
-
-        cardPlayerOnePassengers.text = "Passengers: $passengersCardOne"
-        cardPlayerTwoPassengers.text = "Passengers: $passengersCardTwo"
-
-        cardPlayerOneXP.text = "XP: $xPCardOne"
-        cardPlayerTwoXP.text = "XP: $xPCardTwo"
-
-        chooseCriteriaButton.setOnClickListener {
-            val intent = Intent(this, ChooseCriteriaActivity::class.java)
-            intent.putExtra("player_one", playerOneName)
-            intent.putExtra("player_two", playerTwoName)
-            startActivity(intent)
+        val winner = when(chosenCriteria) {
+            "velocity" ->
+                if(cardOneMaxVelocity > cardTwoMaxVelocity) {
+                    playerOneName
+                } else {
+                    playerTwoName
+                }
+            "acceleration" ->
+                if(accelerationTimeCardOne > accelerationTimeCardTwo) {
+                    playerOneName
+                } else {
+                    playerTwoName
+                }
+            "passengers" ->
+                if(passengersCardOne > passengersCardTwo) {
+                    playerOneName
+                } else {
+                    playerTwoName
+                }
+            else ->
+                if(xPCardOne > xPCardTwo) {
+                    playerOneName
+                } else {
+                    playerTwoName
+                }
         }
+
+        winnerLabel.text = "The winner is $winner"
     }
 }
