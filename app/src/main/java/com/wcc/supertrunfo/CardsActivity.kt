@@ -15,43 +15,56 @@ class CardsActivity : AppCompatActivity() {
 
         val vehiculeOne = mapOf(
             "maxAcceleration" to "100",
-            "acceleration0T010" to "120",
+            "accelerationTime" to "120",
             "passengers" to "5",
+            "weight" to "120",
             "doors" to "2",
             "style" to "sedã",
+            "gears" to "5",
             "type" to "car"
         )
 
         val vehiculeTwo = mapOf(
             "maxAcceleration" to "50",
-            "acceleration0T010" to "60",
+            "accelerationTime" to "60",
             "passengers" to "2",
+            "weight" to "10",
+            "doors" to "0",
+            "style" to "regular",
             "gears" to "7",
             "type" to "bicke"
         )
 
         val vehiculeThree = mapOf(
             "maxAcceleration" to "170",
-            "acceleration0T010" to "40",
+            "accelerationTime" to "40",
             "passengers" to "2",
             "weight" to "70",
+            "doors" to "0",
+            "style" to "adventure",
+            "gears" to "6",
             "type" to "motorcycle"
         )
 
         val vehiculeFour = mapOf(
             "maxAcceleration" to "130",
-            "acceleration0T010" to "170",
+            "accelerationTime" to "170",
             "passengers" to "4",
+            "weight" to "110",
             "doors" to "2",
             "style" to "hatch",
+            "gears" to "5",
             "type" to "car"
         )
 
 
         val vehiculeFive = mapOf(
             "maxAcceleration" to "30",
-            "acceleration0T010" to "240",
+            "accelerationTime" to "240",
             "passengers" to "1",
+            "weight" to "13",
+            "doors" to "0",
+            "style" to "regular",
             "gears" to "4",
             "type" to "bike"
         )
