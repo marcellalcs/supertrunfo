@@ -1,6 +1,4 @@
-package com.wcc.supertrunfo
-
-import com.wcc.supertrun.Driver
+package com.wcc.supertrunfo.entities
 
 class Card(
     private val vehicle: Vehicle,

@@ -3,6 +3,7 @@ package com.wcc.supertrunfo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wcc.supertrunfo.entities.Vehicle
 import kotlinx.android.synthetic.main.activity_cards.*
 
 class CardsActivity : AppCompatActivity() {
